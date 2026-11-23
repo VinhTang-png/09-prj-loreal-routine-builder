@@ -1,3 +1,16 @@
+:root {
+  --color-black: #111111;
+  --color-iconic-black: #000000;
+  --color-white: #ffffff;
+  --color-red: #e31b23;
+  --color-red-dark: #b5121b;
+  --color-passionate-red: #ff003b;
+  --color-ink: #292929;
+  --color-muted: #666666;
+  --color-border: #dedede;
+  --color-surface: #f7f7f7;
+  --color-eternal-gold: #e3a53e
+}
 /* —— basic reset —— */
 * {
   box-sizing: border-box;
@@ -8,9 +21,22 @@
 /* —— body + fonts —— */
 body {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
-  color: #333;
+  color: var(--color-ink);
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(227, 165, 62, 0.35),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(227, 27, 35, 0.22),
+      transparent 40%
+    ),
+    var(--color-surface);
   display: flex;
   justify-content: center;
+  min-height: 100vh;
 }
 
 .page-wrapper {
@@ -68,7 +94,40 @@ body {
 
 .chatbox h2 {
   font-size: 20px;
+  margin-bottom: 0;
+}
+
+.chatbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   margin-bottom: 20px;
+}
+
+.clear-chat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid #d8d8d8;
+  border-radius: 6px;
+  background: #fff;
+  color: #555;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.clear-chat-btn:hover {
+  border-color: #e31b23;
+  background: #e31b23;
+  color: #fff;
+}
+
+.clear-chat-btn:focus-visible {
+  outline: 3px solid #e31b23;
+  outline-offset: 3px;
 }
 
 .chat-window {
@@ -79,6 +138,15 @@ body {
   overflow-y: auto;
   background: #fafafa;
   margin-bottom: 20px;
+}
+
+.chat-message {
+  margin: 0 0 12px;
+  white-space: pre-wrap;
+}
+
+.chat-message-error {
+  color: #b5121b;
 }
 
 /* placeholder message */
@@ -184,8 +252,34 @@ body {
   padding: 15px;
   border-radius: 4px;
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
   min-height: 160px;
+}
+
+.product-select {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.product-select:focus-visible {
+  outline: 3px solid #e31b23;
+  outline-offset: 3px;
+}
+
+.product-card.selected{
+  border: 2px solid #000;
+  background-color: #f5f5f5;
+
 }
 
 .product-card img {
@@ -201,6 +295,20 @@ body {
   flex-direction: column;
   justify-content: center;
   min-height: 110px;
+}
+
+.product-description {
+  flex-basis: 100%;
+  margin-top: 10px;
+}
+
+.product-description summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.product-description p {
+  margin-top: 8px;
 }
 
 .product-card h3 {
@@ -226,6 +334,37 @@ body {
   margin-bottom: 20px;
 }
 
+.selected-product-item{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.remove-product {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d8d8d8;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #555;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.remove-product:hover {
+  border-color: #e31b23;
+  background-color: #e31b23;
+  color: #fff;
+}
+
+.remove-product:focus-visible {
+  outline: 3px solid #e31b23;
+  outline-offset: 3px;
+}
+
 #selectedProductsList {
   display: flex;
   flex-wrap: wrap;
@@ -238,7 +377,7 @@ body {
   padding: 16px;
   font-size: 18px;
   font-weight: 500;
-  color: #fff;
+  color: #ffffff;
   background: #000;
   border: none;
   border-radius: 8px;
@@ -250,6 +389,43 @@ body {
   background: #666;
 }
 
+.generate-btn:disabled,
+.chat-form button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
 .generate-btn i {
   margin-right: 8px;
+}
+
+.clear-selections-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #000;
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.clear-selections-btn:hover {
+  background: #f2f2f2;
+}
+
+.clear-selection-btn{
+  margin-top: 12px;
+  padding :10px 14px;
+  border: 1px solid --color-iconic-black;
+  border-radius: 6px;
+  background: #ffffff;
+  cursor: pointer;
+}
+.clear-selection-btn:disabled{
+  cursor: not-allowed;
+  opacity: 0.6;
 }
