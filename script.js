@@ -213,11 +213,14 @@ function toggleProductSelection(productId) {
 }
 
 productsContainer.addEventListener("click", (event) => {
-  const selectButton = event.target.closest(".product-select");
+  const productCard = event.target.closest(".product-card");
 
-  if (selectButton) {
-    toggleProductSelection(selectButton.dataset.productId);
+  if (!productCard || event.target.closest(".product-description")) {
+    return;
   }
+
+  const selectButton = productCard.querySelector(".product-select");
+  toggleProductSelection(selectButton.dataset.productId);
 });
 
 /* Remove a product using the button in the selected products list */
